@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramadan Mubarak 2024</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --green: #2E8B57;
+            --dark-blue: #000080;
+        }
+
+        body {
+            background: linear-gradient(45deg, var(--dark-blue), #000033);
+            color: white;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .moon {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at 30% 30%, #fff, #f0f0f0);
+            border-radius: 50%;
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            animation: glow 3s infinite alternate;
+            box-shadow: 0 0 50px rgba(255,255,255,0.3);
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 1s infinite alternate;
+        }
+
+        .lantern {
+            font-size: 4rem;
+            color: var(--gold);
+            animation: swing 3s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        .countdown {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--gold);
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 50px rgba(255,255,255,0.3); }
+            to { box-shadow: 0 0 70px rgba(255,255,255,0.6); }
+        }
+
+        @keyframes twinkle {
+            from { opacity: 0.3; }
+            to { opacity: 1; }
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .prayer-times {
+            background: rgba(46, 139, 87, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .quran-verse {
+            font-size: 1.2rem;
+            font-style: italic;
+            text-align: center;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animasi Bintang -->
+    <div class="stars"></div>
+
+    <!-- Bulan -->
+    <div class="moon"></div>
+
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <i class="lantern fas fa-mosque"></i>
+            <h1 class="display-4 mt-3">ramadan mubarak 1445 H</h1>
+            <p class="lead">"semoga ramadan membawa berkah dan ketenangan"</p>
+        </div>
+
+        <!-- Countdown Timer -->
+        <div class="countdown text-center mb-5">
+            <h3>Waktu Menuju Hari Raya</h3>
+            <div class="d-flex justify-content-center gap-4 mt-3">
+                <div>
+                    <div class="countdown-number" id="days">00</div>
+                    <div>hari</div>
+                </div>
+                <div>
+                    <div class="countdown-number" id="hours">00</div>
+                    <div>jam</div>
+                </div>
+                <div>
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div>menit</div>
+                </div>
+                <div>
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div>detik</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jadwal Sholat -->
+        <div class="row prayer-times mb-5">
+            <div class="col-md-12">
+                <h3 class="text-center mb-4"><i class="fas fa-pray"></i> Jadwal Sholat</h3>
+                <div class="d-flex justify-content-around flex-wrap">
+                    <div>Subuh: 04:30</div>
+                    <div>Dzuhur: 12:15</div>
+                    <div>Ashar: 15:30</div>
+                    <div>Maghrib: 18:15</div>
+                    <div>Isya: 19:30</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ayat Al-Quran -->
+        <div class="quran-verse">
+            <p>"يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ كَمَا كُتِبَ عَلَى الَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ"</p>
+            <p>"Wahai orang-orang yang beriman! Diwajibkan atas kamu berpuasa sebagaimana diwajibkan atas orang sebelum kamu agar kamu bertakwa." (QS. Al-Baqarah: 183)</p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Generate Bintang
+        function createStars() {
+            const container = document.body;
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 1 + 's';
+                container.appendChild(star);
+            }
+        }
+        createStars();
+
+        // Countdown Timer
+        const ramadanEnd = new Date('April 9, 2024 00:00:00').getTime();
+        
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = ramadanEnd - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerHTML = days;
+            document.getElementById('hours').innerHTML = hours;
+            document.getElementById('minutes').innerHTML = minutes;
+            document.getElementById('seconds').innerHTML = seconds;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Animasi Hover untuk Lentera
+        $('.lantern').hover(
+            function() {
+                $(this).css('color', '#ff4500');
+            },
+            function() {
+                $(this).css('color', 'var(--gold)');
+            }
+        );
+    </script>
+</body>
+</html>
